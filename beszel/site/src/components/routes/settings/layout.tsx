@@ -69,8 +69,8 @@ export default function SettingsLayout() {
 
 	useEffect(() => {
 		document.title = t`Settings` + " / Beszel"
-		// redirect to account page if no page is specified
-		if (page?.route === "settings") {
+		// @ts-ignore redirect to account page if no page is specified
+		if (!page?.params?.name) {
 			redirectPage($router, "settings", { name: "general" })
 		}
 	}, [])

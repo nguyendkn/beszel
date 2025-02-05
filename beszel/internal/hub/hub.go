@@ -137,9 +137,9 @@ func (h *Hub) Run() {
 				return err
 			}
 			// fix base paths in html if using subpath
-			basePath := parsedURL.Path
+			basePath := strings.TrimSuffix(parsedURL.Path, "/") + "/"
 			indexFile, _ := fs.ReadFile(site.DistDirFS, "index.html")
-			indexContent := strings.ReplaceAll(string(indexFile), `"./`, `"`+basePath+`/`)
+			indexContent := strings.ReplaceAll(string(indexFile), "./", basePath)
 			// set up static asset serving
 			staticPaths := [2]string{"/static/", "/assets/"}
 			serveStatic := apis.Static(site.DistDirFS, false)
@@ -150,6 +150,7 @@ func (h *Hub) Run() {
 				// serve static assets if path is in staticPaths
 				for i := range staticPaths {
 					if strings.Contains(e.Request.URL.Path, staticPaths[i]) {
+						e.Response.Header().Set("Cache-Control", "public, max-age=2592000")
 						return serveStatic(e)
 					}
 				}
