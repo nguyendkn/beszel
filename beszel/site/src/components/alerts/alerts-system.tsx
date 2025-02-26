@@ -160,13 +160,13 @@ export function SystemAlertGlobal({
 function AlertContent({ data }: { data: AlertData }) {
 	const { key } = data
 
-	const hasSliders = !("single" in data.alert)
+	const singleDescription = data.alert?.singleDesc
 
 	const [checked, setChecked] = useState(data.checked || false)
-	const [min, setMin] = useState(data.min || (hasSliders ? 10 : 0))
-	const [value, setValue] = useState(data.val || (hasSliders ? 80 : 0))
+	const [min, setMin] = useState(data.min || 10)
+	const [value, setValue] = useState(data.val || (singleDescription ? 0 : 80))
 
-	const showSliders = checked && hasSliders
+	const showSliders = checked
 
 	const newMin = useRef(min)
 	const newValue = useRef(value)
@@ -201,6 +201,7 @@ function AlertContent({ data }: { data: AlertData }) {
 			{showSliders && (
 				<div className="grid sm:grid-cols-2 mt-1.5 gap-5 px-4 pb-5 tabular-nums text-muted-foreground">
 					<Suspense fallback={<div className="h-10" />}>
+					{!singleDescription && (
 						<div>
 							<p id={`v${key}`} className="text-sm block h-8">
 								<Trans>
@@ -222,8 +223,12 @@ function AlertContent({ data }: { data: AlertData }) {
 								/>
 							</div>
 						</div>
-						<div>
-							<p id={`t${key}`} className="text-sm block h-8">
+					)}
+						<div className={cn(singleDescription && "col-span-full lowercase")}>
+							<p id={`t${key}`} className="text-sm block h-8 first-letter:uppercase">
+								{singleDescription && (
+									<>{singleDescription}{` `}</>
+								)}
 								<Trans>
 									For <strong className="text-foreground">{min}</strong>{" "}
 									<Plural value={min} one=" minute" other=" minutes" />
