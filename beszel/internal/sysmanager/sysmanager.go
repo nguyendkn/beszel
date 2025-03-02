@@ -15,29 +15,32 @@ import (
 )
 
 const (
-	up       string = "up"
-	down     string = "down"
-	paused   string = "paused"
-	pending  string = "pending"
-	interval int    = 60_000
+	up      string = "up"
+	down    string = "down"
+	paused  string = "paused"
+	pending string = "pending"
+
+	interval int = 60_000
+
+	sessionTimeout = 4 * time.Second
 )
 
 type SystemManager struct {
-	updateStore *store.Store[string, *System]
-	hub         hubLike
-	sshConfig   *ssh.ClientConfig
+	hub       hubLike
+	systems   *store.Store[string, *System]
+	sshConfig *ssh.ClientConfig
 }
 
 type System struct {
-	Id       string `db:"id"`
-	Host     string `db:"host"`
-	Port     string `db:"port"`
-	Status   string `db:"status"`
-	client   *ssh.Client
-	data     *system.CombinedData
-	stopChan chan struct{}
-	manager  *SystemManager
-	retries  uint8
+	Id      string `db:"id"`
+	Host    string `db:"host"`
+	Port    string `db:"port"`
+	Status  string `db:"status"`
+	manager *SystemManager
+	client  *ssh.Client
+	data    *system.CombinedData
+	ctx     context.Context
+	cancel  context.CancelFunc
 }
 
 type hubLike interface {
@@ -49,8 +52,8 @@ type hubLike interface {
 
 func NewSystemManager(hub hubLike) (*SystemManager, error) {
 	sm := &SystemManager{
-		updateStore: store.New(map[string]*System{}),
-		hub:         hub,
+		systems: store.New(map[string]*System{}),
+		hub:     hub,
 	}
 	key, err := sm.hub.GetSSHKey()
 	if err != nil {
@@ -126,7 +129,7 @@ func (sm *SystemManager) onRecordAfterUpdateSuccess(e *core.RecordEvent) error {
 		}
 		return e.Next()
 	}
-	system, ok := sm.updateStore.GetOk(e.Record.Id)
+	system, ok := sm.systems.GetOk(e.Record.Id)
 	if !ok {
 		return sm.AddRecord(e.Record)
 	}
@@ -163,39 +166,42 @@ func (sm *SystemManager) createSSHClientConfig(key []byte) error {
 			ssh.PublicKeys(signer),
 		},
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
-		Timeout:         4 * time.Second,
+		Timeout:         sessionTimeout,
 	}
 	return nil
 }
 
 // AddSystem adds a system to the manager
 func (sm *SystemManager) AddSystem(sys *System) error {
-	if sm.updateStore.Has(sys.Id) {
+	if sm.systems.Has(sys.Id) {
 		return fmt.Errorf("system exists")
 	}
 	if sys.Id == "" || sys.Host == "" {
 		return fmt.Errorf("system is missing required fields")
 	}
 	sys.manager = sm
-	sys.stopChan = make(chan struct{})
+	sys.ctx, sys.cancel = context.WithCancel(context.Background())
 	sys.data = &system.CombinedData{}
-	sm.updateStore.Set(sys.Id, sys)
+	sm.systems.Set(sys.Id, sys)
 	go sys.StartUpdater()
 	return nil
 }
 
 // RemoveSystem removes a system from the manager
 func (sm *SystemManager) RemoveSystem(systemID string) error {
-	system, ok := sm.updateStore.GetOk(systemID)
+	system, ok := sm.systems.GetOk(systemID)
 	if !ok {
 		return fmt.Errorf("system not found")
 	}
-	// Signal stop and close client
-	system.stopChan <- struct{}{}
+	// cancel the context to signal stop
+	if system.cancel != nil {
+		system.cancel()
+	}
+
 	if system.client != nil {
 		system.client.Close()
 	}
-	sm.updateStore.Remove(systemID)
+	sm.systems.Remove(systemID)
 	return nil
 }
 
@@ -243,11 +249,11 @@ func (sys *System) StartUpdater() {
 		_ = sys.setDown(err)
 	}
 
-	c := time.Tick(60000 * time.Millisecond)
+	c := time.Tick(time.Duration(interval) * time.Millisecond)
 
 	for {
 		select {
-		case <-sys.stopChan:
+		case <-sys.ctx.Done():
 			return
 		case <-c:
 			err := sys.update()
@@ -273,43 +279,47 @@ func (sys *System) update() error {
 // Then it creates a new SSH session and fetches the data from the agent.
 // If the data is not found or the system is down, it sets the system down.
 func (sys *System) fetchDataFromAgent() (*system.CombinedData, error) {
-	if sys.client == nil || sys.Status == down {
-		if err := sys.CreateSSHClient(); err != nil {
+	maxRetries := 1
+	for attempt := 0; attempt <= maxRetries; attempt++ {
+		if sys.client == nil || sys.Status == down {
+			if err := sys.CreateSSHClient(); err != nil {
+				return nil, err
+			}
+		}
+
+		session, err := sys.createSessionWithTimeout(4 * time.Second)
+		if err != nil {
+			if attempt >= maxRetries {
+				return nil, err
+			}
+			sys.manager.hub.Logger().Warn("Session closed. Retrying...", "host", sys.Host, "port", sys.Port, "err", err)
+			sys.client = nil
+			continue
+		}
+		defer session.Close()
+
+		stdout, err := session.StdoutPipe()
+		if err != nil {
 			return nil, err
 		}
-	}
-	session, err := newSessionWithTimeout(sys.client, 4*time.Second)
-	if err != nil {
-		if sys.retries > 0 {
-			sys.retries = 0
+		if err := session.Shell(); err != nil {
 			return nil, err
 		}
-		sys.retries++
-		sys.manager.hub.Logger().Warn("Existing SSH connection closed. Retrying...", "host", sys.Host, "port", sys.Port)
-		sys.client = nil
-		// TODO: get rid of recursion
-		return sys.fetchDataFromAgent()
-	}
-	defer session.Close()
 
-	stdout, err := session.StdoutPipe()
-	if err != nil {
-		return nil, err
-	}
-	if err := session.Shell(); err != nil {
-		return nil, err
+		// this is initialized in startUpdater, should never be nil
+		*sys.data = system.CombinedData{}
+		if err := json.NewDecoder(stdout).Decode(sys.data); err != nil {
+			return nil, err
+		}
+		// wait for the session to complete
+		if err := session.Wait(); err != nil {
+			return nil, err
+		}
+		return sys.data, nil
 	}
 
-	// this is initialized in startUpdater, should never be nil
-	*sys.data = system.CombinedData{}
-	if err := json.NewDecoder(stdout).Decode(sys.data); err != nil {
-		return nil, err
-	}
-	// wait for the session to complete
-	if err := session.Wait(); err != nil {
-		return nil, err
-	}
-	return sys.data, nil
+	// this should never be reached due to the return in the loop
+	return nil, fmt.Errorf("failed to fetch data")
 }
 
 // updateRecords updates the system record and adds system_stats and container_stats records
@@ -384,25 +394,33 @@ func (sys *System) setDown(OriginalError error) error {
 	return nil
 }
 
-// Adds timeout to SSH session creation to avoid hanging in case of network issues
-func newSessionWithTimeout(client *ssh.Client, timeout time.Duration) (*ssh.Session, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+// createSessionWithTimeout creates a new SSH session with a timeout to avoid hanging
+// in case of network issues
+func (sys *System) createSessionWithTimeout(timeout time.Duration) (*ssh.Session, error) {
+	if sys.client == nil {
+		return nil, fmt.Errorf("client not initialized")
+	}
+
+	ctx, cancel := context.WithTimeout(sys.ctx, timeout)
 	defer cancel()
+
 	sessionChan := make(chan *ssh.Session, 1)
 	errChan := make(chan error, 1)
+
 	go func() {
-		if session, err := client.NewSession(); err != nil {
+		if session, err := sys.client.NewSession(); err != nil {
 			errChan <- err
 		} else {
 			sessionChan <- session
 		}
 	}()
+
 	select {
 	case session := <-sessionChan:
 		return session, nil
 	case err := <-errChan:
 		return nil, err
 	case <-ctx.Done():
-		return nil, fmt.Errorf("session creation timed out")
+		return nil, fmt.Errorf("timeout")
 	}
 }
