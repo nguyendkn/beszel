@@ -9,6 +9,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/shirou/gopsutil/v4/common"
 )
@@ -27,11 +28,17 @@ type Agent struct {
 	sensorsWhitelist map[string]struct{}        // List of sensors to monitor
 	systemInfo       system.Info                // Host system info
 	gpuManager       *GPUManager                // Manages GPU data
+	data             *system.CombinedData
+	updated          time.Time
+	sshUser          string
 }
+
+const cacheTime = 60 * time.Second
 
 func NewAgent() *Agent {
 	agent := &Agent{
 		fsStats: make(map[string]*system.FsStats),
+		data:    &system.CombinedData{},
 	}
 	agent.memCalc, _ = GetEnv("MEM_CALC")
 
@@ -85,7 +92,7 @@ func NewAgent() *Agent {
 
 	// if debugging, print stats
 	if agent.debug {
-		slog.Debug("Stats", "data", agent.gatherStats())
+		slog.Debug("Stats", "data", agent.gatherStats(context.Background()))
 	}
 
 	return agent
@@ -100,29 +107,36 @@ func GetEnv(key string) (value string, exists bool) {
 	return os.LookupEnv(key)
 }
 
-func (a *Agent) gatherStats() system.CombinedData {
+func (a *Agent) gatherStats(ctx context.Context) *system.CombinedData {
 	a.Lock()
 	defer a.Unlock()
+	user := ctx.Value("user").(string)
+	if time.Since(a.updated) < cacheTime && user != a.sshUser && a.data != nil {
+		slog.Info("Using cached stats")
+		return a.data
+	}
 	slog.Debug("Getting stats")
-	systemData := system.CombinedData{
+	*a.data = system.CombinedData{
 		Stats: a.getSystemStats(),
 		Info:  a.systemInfo,
 	}
-	slog.Debug("System stats", "data", systemData)
+	slog.Debug("System stats", "data", a.data)
 	// add docker stats
 	if containerStats, err := a.dockerManager.getDockerStats(); err == nil {
-		systemData.Containers = containerStats
-		slog.Debug("Docker stats", "data", systemData.Containers)
+		a.data.Containers = containerStats
+		slog.Debug("Docker stats", "data", a.data.Containers)
 	} else {
 		slog.Debug("Error getting docker stats", "err", err)
 	}
 	// add extra filesystems
-	systemData.Stats.ExtraFs = make(map[string]*system.FsStats)
+	a.data.Stats.ExtraFs = make(map[string]*system.FsStats)
 	for name, stats := range a.fsStats {
 		if !stats.Root && stats.DiskTotal > 0 {
-			systemData.Stats.ExtraFs[name] = stats
+			a.data.Stats.ExtraFs[name] = stats
 		}
 	}
-	slog.Debug("Extra filesystems", "data", systemData.Stats.ExtraFs)
-	return systemData
+	slog.Debug("Extra filesystems", "data", a.data.Stats.ExtraFs)
+	a.sshUser = user
+	a.updated = time.Now()
+	return a.data
 }

@@ -142,6 +142,12 @@ export default function SystemsTable() {
 				minSize: 0,
 				accessorKey: "name",
 				id: t`System`,
+				filterFn: (row, _, filterVal) => {
+					// allow filtering by name or status via input field
+					const { name, status } = row.original
+					filterVal = filterVal.toLowerCase()
+					return name.toLowerCase().includes(filterVal) || t`${status}`.toLowerCase().includes(filterVal)
+				},
 				enableHiding: false,
 				icon: ServerIcon,
 				cell: (info) => (
@@ -601,10 +607,12 @@ const ActionsButton = memo(({ system }: { system: SystemRecord }) => {
 					)}
 					<DropdownMenuItem
 						className={cn(isReadOnlyUser() && "hidden")}
-						onClick={() => {
-							pb.collection("systems").update(id, {
+						onClick={async () => {
+							console.log("updating status", id, status, status === "paused" ? "pending" : "paused")
+							const rest = await pb.collection("systems").update(id, {
 								status: status === "paused" ? "pending" : "paused",
 							})
+							console.log("rest", rest)
 						}}
 					>
 						{status === "paused" ? (
