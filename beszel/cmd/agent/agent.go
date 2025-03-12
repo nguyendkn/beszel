@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 
 	"golang.org/x/crypto/ssh"
 )
@@ -31,6 +30,7 @@ func (opts *cmdOptions) parseFlags() {
 		fmt.Println("  version      Display the version")
 		fmt.Println("  help         Display this help message")
 		fmt.Println("  update       Update the agent to the latest version")
+		fmt.Println("  health       Check if the agent is running (for Docker health checks)")
 	}
 }
 
@@ -41,6 +41,9 @@ func handleSubcommand() bool {
 		return false
 	}
 	switch os.Args[1] {
+	case "health":
+		exitCode := agent.Health()
+		os.Exit(exitCode)
 	case "version", "-v":
 		fmt.Println(beszel.AppName+"-agent", beszel.Version)
 		os.Exit(0)
@@ -50,8 +53,10 @@ func handleSubcommand() bool {
 	case "update":
 		agent.Update()
 		os.Exit(0)
+	default:
+		return false
 	}
-	return false
+	return true
 }
 
 // loadPublicKeys loads the public keys from the command line flag, environment variable, or key file.
@@ -79,32 +84,8 @@ func (opts *cmdOptions) loadPublicKeys() ([]ssh.PublicKey, error) {
 	return agent.ParseKeys(string(pubKey))
 }
 
-// getAddress gets the address to listen on from the command line flag, environment variable, or default value.
 func (opts *cmdOptions) getAddress() string {
-	// Try command line flag first
-	if opts.listen != "" {
-		return opts.listen
-	}
-	// Try environment variables
-	if addr, ok := agent.GetEnv("LISTEN"); ok && addr != "" {
-		return addr
-	}
-	// Legacy PORT environment variable support
-	if port, ok := agent.GetEnv("PORT"); ok && port != "" {
-		return port
-	}
-	return ":45876"
-}
-
-// getNetwork returns the network type to use for the server.
-func (opts *cmdOptions) getNetwork() string {
-	if network, _ := agent.GetEnv("NETWORK"); network != "" {
-		return network
-	}
-	if strings.HasPrefix(opts.listen, "/") {
-		return "unix"
-	}
-	return "tcp"
+	return agent.GetAddress(opts.listen)
 }
 
 func main() {
@@ -117,8 +98,6 @@ func main() {
 
 	flag.Parse()
 
-	opts.listen = opts.getAddress()
-
 	var serverConfig agent.ServerOptions
 	var err error
 	serverConfig.Keys, err = opts.loadPublicKeys()
@@ -126,8 +105,9 @@ func main() {
 		log.Fatal("Failed to load public keys:", err)
 	}
 
-	serverConfig.Addr = opts.listen
-	serverConfig.Network = opts.getNetwork()
+	addr := opts.getAddress()
+	serverConfig.Addr = addr
+	serverConfig.Network = agent.GetNetwork(addr)
 
 	agent := agent.NewAgent()
 	if err := agent.StartServer(serverConfig); err != nil {

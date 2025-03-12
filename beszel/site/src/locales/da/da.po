@@ -48,14 +48,14 @@ msgid "30 days"
 msgstr "30 dage"
 
 #. Table column
-#: src/components/systems-table/systems-table.tsx:293
-#: src/components/systems-table/systems-table.tsx:381
-#: src/components/systems-table/systems-table.tsx:523
-#: src/components/systems-table/systems-table.tsx:533
+#: src/components/systems-table/systems-table.tsx:294
+#: src/components/systems-table/systems-table.tsx:385
+#: src/components/systems-table/systems-table.tsx:550
+#: src/components/systems-table/systems-table.tsx:560
 msgid "Actions"
 msgstr "Handlinger"
 
-#: src/components/routes/home.tsx:62
+#: src/components/routes/home.tsx:91
 msgid "Active Alerts"
 msgstr "Aktive Alarmer"
 
@@ -87,21 +87,21 @@ msgstr "Juster visningsindstillinger for diagrammer."
 msgid "Admin"
 msgstr "Admin"
 
-#: src/components/systems-table/systems-table.tsx:261
+#: src/components/systems-table/systems-table.tsx:265
 msgid "Agent"
 msgstr "Agent"
 
 #: src/components/alerts/alert-button.tsx:32
-#: src/components/alerts/alert-button.tsx:68
+#: src/components/alerts/alert-button.tsx:78
 msgid "Alerts"
 msgstr "Alarmer"
 
-#: src/components/systems-table/systems-table.tsx:334
-#: src/components/alerts/alert-button.tsx:88
+#: src/components/systems-table/systems-table.tsx:338
+#: src/components/alerts/alert-button.tsx:98
 msgid "All Systems"
 msgstr "Alle systemer"
 
-#: src/components/systems-table/systems-table.tsx:657
+#: src/components/systems-table/systems-table.tsx:724
 msgid "Are you sure you want to delete {name}?"
 msgstr "Er du sikker på, at du vil slette {name}?"
 
@@ -118,7 +118,7 @@ msgid "Average CPU utilization of containers"
 msgstr "Gennemsnitlig CPU udnyttelse af containere"
 
 #. placeholder {0}: data.alert.unit
-#: src/components/alerts/alerts-system.tsx:205
+#: src/components/alerts/alerts-system.tsx:252
 msgid "Average exceeds <0>{value}{0}</0>"
 msgstr "Gennemsnit overstiger <0>{value}{0}</0>"
 
@@ -161,7 +161,7 @@ msgstr "Binær"
 msgid "Cache / Buffers"
 msgstr "Cache / Buffere"
 
-#: src/components/systems-table/systems-table.tsx:668
+#: src/components/systems-table/systems-table.tsx:735
 msgid "Cancel"
 msgstr "Fortryd"
 
@@ -207,7 +207,7 @@ msgstr "Konfigurer hvordan du modtager advarselsmeddelelser."
 msgid "Confirm password"
 msgstr "Bekræft adgangskode"
 
-#: src/components/systems-table/systems-table.tsx:674
+#: src/components/systems-table/systems-table.tsx:741
 msgid "Continue"
 msgstr "Forsæt"
 
@@ -220,7 +220,7 @@ msgstr "Kopieret til udklipsholder"
 msgid "Copy"
 msgstr "Kopier"
 
-#: src/components/systems-table/systems-table.tsx:639
+#: src/components/systems-table/systems-table.tsx:706
 msgid "Copy host"
 msgstr "Kopier host"
 
@@ -232,7 +232,7 @@ msgstr "Kopier Linux kommando"
 msgid "Copy text"
 msgstr "Kopier tekst"
 
-#: src/components/systems-table/systems-table.tsx:180
+#: src/components/systems-table/systems-table.tsx:184
 msgid "CPU"
 msgstr "CPU"
 
@@ -260,11 +260,11 @@ msgstr "Oversigtspanel"
 msgid "Default time period"
 msgstr "Standard tidsperiode"
 
-#: src/components/systems-table/systems-table.tsx:644
+#: src/components/systems-table/systems-table.tsx:711
 msgid "Delete"
 msgstr "Slet"
 
-#: src/components/systems-table/systems-table.tsx:196
+#: src/components/systems-table/systems-table.tsx:200
 msgid "Disk"
 msgstr "Disk"
 
@@ -300,13 +300,13 @@ msgstr "Dokumentation"
 
 #. Context: System is down
 #: src/lib/utils.ts:316
-#: src/components/systems-table/systems-table.tsx:141
+#: src/components/systems-table/systems-table.tsx:142
 #: src/components/routes/system.tsx:344
 msgid "Down"
 msgstr ""
 
 #: src/components/add-system.tsx:125
-#: src/components/systems-table/systems-table.tsx:614
+#: src/components/systems-table/systems-table.tsx:681
 msgid "Edit"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr "Fejl"
 #. placeholder {0}: alert.value
 #. placeholder {1}: info.unit
 #. placeholder {2}: alert.min
-#: src/components/routes/home.tsx:81
+#: src/components/routes/home.tsx:110
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Overskrider {0}{1} i sidste {2, plural, one {# minut} other {# minutter}}"
 
@@ -365,16 +365,16 @@ msgstr "Kunne ikke gemme indstillinger"
 msgid "Failed to send test notification"
 msgstr "Afsendelse af testnotifikation mislykkedes"
 
-#: src/components/alerts/alerts-system.tsx:24
+#: src/components/alerts/alerts-system.tsx:25
 msgid "Failed to update alert"
 msgstr "Kunne ikke opdatere alarm"
 
-#: src/components/systems-table/systems-table.tsx:341
+#: src/components/systems-table/systems-table.tsx:345
 #: src/components/routes/system.tsx:641
 msgid "Filter..."
 msgstr "Filter..."
 
-#: src/components/alerts/alerts-system.tsx:230
+#: src/components/alerts/alerts-system.tsx:284
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
 msgstr "For <0>{min}</0> {min, plural, one {minut} other {minutter}}"
 
@@ -392,7 +392,7 @@ msgstr "Generelt"
 msgid "GPU Power Draw"
 msgstr "Gpu Strøm Træk"
 
-#: src/components/systems-table/systems-table.tsx:368
+#: src/components/systems-table/systems-table.tsx:372
 msgid "Grid"
 msgstr "Gitter"
 
@@ -417,7 +417,7 @@ msgstr "Kernel"
 msgid "Language"
 msgstr "Sprog"
 
-#: src/components/systems-table/systems-table.tsx:354
+#: src/components/systems-table/systems-table.tsx:358
 msgid "Layout"
 msgstr "Layout"
 
@@ -461,7 +461,7 @@ msgstr ""
 msgid "Max 1 min"
 msgstr "Maks. 1 min"
 
-#: src/components/systems-table/systems-table.tsx:188
+#: src/components/systems-table/systems-table.tsx:192
 msgid "Memory"
 msgstr "Hukommelse"
 
@@ -478,7 +478,7 @@ msgstr "Hukommelsesforbrug af dockercontainere"
 msgid "Name"
 msgstr "Navn"
 
-#: src/components/systems-table/systems-table.tsx:213
+#: src/components/systems-table/systems-table.tsx:217
 msgid "Net"
 msgstr "Net"
 
@@ -494,8 +494,8 @@ msgstr "Netværkstrafik af offentlige grænseflader"
 msgid "No results found."
 msgstr "Ingen resultater fundet."
 
-#: src/components/systems-table/systems-table.tsx:489
-#: src/components/systems-table/systems-table.tsx:562
+#: src/components/systems-table/systems-table.tsx:462
+#: src/components/systems-table/systems-table.tsx:499
 msgid "No systems found."
 msgstr "Ingen systemer fundet."
 
@@ -513,7 +513,7 @@ msgstr "OAuth 2 / OIDC understøttelse"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Ved hver genstart vil systemer i databasen blive opdateret til at matche de systemer, der er defineret i filen."
 
-#: src/components/systems-table/systems-table.tsx:600
+#: src/components/systems-table/systems-table.tsx:667
 msgid "Open menu"
 msgstr "Åbn menu"
 
@@ -521,7 +521,7 @@ msgstr "Åbn menu"
 msgid "Or continue with"
 msgstr "Eller fortsæt med"
 
-#: src/components/alerts/alert-button.tsx:109
+#: src/components/alerts/alert-button.tsx:119
 msgid "Overwrite existing alerts"
 msgstr "Overskriv eksisterende alarmer"
 
@@ -550,11 +550,11 @@ msgstr ""
 msgid "Password reset request received"
 msgstr "Anmodning om nulstilling af adgangskode modtaget"
 
-#: src/components/systems-table/systems-table.tsx:633
+#: src/components/systems-table/systems-table.tsx:700
 msgid "Pause"
 msgstr "Pause"
 
-#: src/components/systems-table/systems-table.tsx:142
+#: src/components/systems-table/systems-table.tsx:143
 msgid "Paused"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Konfigurer <0>en SMTP server</0> for at sikre at alarmer bliver leveret."
 
-#: src/components/alerts/alerts-system.tsx:25
+#: src/components/alerts/alerts-system.tsx:26
 msgid "Please check logs for more details."
 msgstr "Tjek logfiler for flere detaljer."
 
@@ -624,7 +624,7 @@ msgstr "Modtaget"
 msgid "Reset Password"
 msgstr "Nulstil adgangskode"
 
-#: src/components/systems-table/systems-table.tsx:628
+#: src/components/systems-table/systems-table.tsx:695
 msgid "Resume"
 msgstr "Genoptag"
 
@@ -649,7 +649,7 @@ msgstr "Søg"
 msgid "Search for systems or settings..."
 msgstr "Søg efter systemer eller indstillinger..."
 
-#: src/components/alerts/alert-button.tsx:71
+#: src/components/alerts/alert-button.tsx:81
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Se <0>meddelelsesindstillinger</0> for at konfigurere, hvordan du modtager alarmer."
 
@@ -682,7 +682,7 @@ msgstr "Log ind"
 msgid "SMTP settings"
 msgstr "SMTP-indstillinger"
 
-#: src/components/systems-table/systems-table.tsx:376
+#: src/components/systems-table/systems-table.tsx:380
 msgid "Sort By"
 msgstr "Sorter efter"
 
@@ -701,10 +701,10 @@ msgstr "Swap forbrug"
 #. System theme
 #: src/lib/utils.ts:316
 #: src/components/mode-toggle.tsx:26
-#: src/components/systems-table/systems-table.tsx:125
-#: src/components/systems-table/systems-table.tsx:133
-#: src/components/systems-table/systems-table.tsx:150
-#: src/components/systems-table/systems-table.tsx:533
+#: src/components/systems-table/systems-table.tsx:126
+#: src/components/systems-table/systems-table.tsx:134
+#: src/components/systems-table/systems-table.tsx:151
+#: src/components/systems-table/systems-table.tsx:560
 msgid "System"
 msgstr "System"
 
@@ -716,12 +716,12 @@ msgstr "Systemer"
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Systemer kan være administreres i filen <0>config.yml</0> i din datamappe."
 
-#: src/components/systems-table/systems-table.tsx:364
+#: src/components/systems-table/systems-table.tsx:368
 msgid "Table"
 msgstr "Tabel"
 
 #. Temperature label in systems table
-#: src/components/systems-table/systems-table.tsx:233
+#: src/components/systems-table/systems-table.tsx:237
 msgid "Temp"
 msgstr ""
 
@@ -754,7 +754,7 @@ msgstr "Agenten skal køre på systemet for at forbinde. Kopier <0>docker-compos
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Log derefter ind på backend og nulstil adgangskoden til din brugerkonto i tabellen brugere."
 
-#: src/components/systems-table/systems-table.tsx:660
+#: src/components/systems-table/systems-table.tsx:727
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Denne handling kan ikke fortrydes. Dette vil permanent slette alle aktuelle elementer for {name} fra databasen."
 
@@ -804,12 +804,12 @@ msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Udløser når brugen af en disk overstiger en tærskel"
 
 #. Context: System is up
-#: src/components/systems-table/systems-table.tsx:140
+#: src/components/systems-table/systems-table.tsx:141
 #: src/components/routes/system.tsx:342
 msgid "Up"
 msgstr ""
 
-#: src/components/systems-table/systems-table.tsx:337
+#: src/components/systems-table/systems-table.tsx:341
 msgid "Updated in real time. Click on a system to view information."
 msgstr "Opdateret i realtid. Klik på et system for at se information."
 
@@ -838,11 +838,11 @@ msgstr "Brugt"
 msgid "Users"
 msgstr "Brugere"
 
-#: src/components/systems-table/systems-table.tsx:346
+#: src/components/systems-table/systems-table.tsx:350
 msgid "View"
 msgstr "Vis"
 
-#: src/components/systems-table/systems-table.tsx:410
+#: src/components/systems-table/systems-table.tsx:414
 msgid "Visible Fields"
 msgstr "Synlige felter"
 

@@ -113,8 +113,8 @@ func (a *Agent) gatherStats(sessionID string) *system.CombinedData {
 	}
 
 	*cachedData = system.CombinedData{
-		Stats: a.getSystemStats(),
-		Info:  a.systemInfo,
+		Stats: a.getSystemStats(&system.Stats{}),
+		Info:  &a.systemInfo,
 	}
 	slog.Debug("System stats", "data", cachedData)
 

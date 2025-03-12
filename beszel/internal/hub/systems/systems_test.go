@@ -249,7 +249,7 @@ func TestSystemManagerIntegration(t *testing.T) {
 
 		// Create test system data
 		testData := &system.CombinedData{
-			Info: system.Info{
+			Info: &system.Info{
 				Hostname:      "data-test.example.com",
 				KernelVersion: "5.15.0-generic",
 				Cores:         4,
@@ -262,7 +262,7 @@ func TestSystemManagerIntegration(t *testing.T) {
 				Bandwidth:     100.0,
 				AgentVersion:  "1.0.0",
 			},
-			Stats: system.Stats{
+			Stats: &system.Stats{
 				Cpu:         25.5,
 				Mem:         16384.0,
 				MemUsed:     6553.6,

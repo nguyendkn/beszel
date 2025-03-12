@@ -171,7 +171,8 @@ func (h *Hub) startServer(se *core.ServeEvent) error {
 		// fix base paths in html if using subpath
 		basePath := strings.TrimSuffix(parsedURL.Path, "/") + "/"
 		indexFile, _ := fs.ReadFile(site.DistDirFS, "index.html")
-		indexContent := strings.ReplaceAll(string(indexFile), "./", basePath)
+		indexContent := strings.Replace(string(indexFile), "./", basePath, 1)
+		indexContent = strings.Replace(indexContent, "{{VERSION}}", beszel.Version, 1)
 		// set up static asset serving
 		staticPaths := [2]string{"/static/", "/assets/"}
 		serveStatic := apis.Static(site.DistDirFS, false)

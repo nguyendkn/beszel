@@ -1,0 +1,13 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "@henrygd/semaphore": "^0.0.2",
+      },
+    },
+  },
+  "packages": {
+    "@henrygd/semaphore": ["@henrygd/semaphore@0.0.2", "", {}, "sha512-N3W7MKwTRmAxOjeG0NAT18oe2Xn3KdjkpMR6crbkF1UDamMGPjyigqEsefiv+qTaxibtc1a+zXCVzb9YXANVqw=="],
+  }
+}

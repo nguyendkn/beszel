@@ -15,11 +15,11 @@ func TestSessionCache_GetSet(t *testing.T) {
 		cache := NewSessionCache(69 * time.Second)
 
 		testData := &system.CombinedData{
-			Info: system.Info{
+			Info: &system.Info{
 				Hostname: "test-host",
 				Cores:    4,
 			},
-			Stats: system.Stats{
+			Stats: &system.Stats{
 				Cpu:     50.0,
 				MemPct:  30.0,
 				DiskPct: 40.0,

@@ -100,3 +100,7 @@
 .recharts-yAxis {
 	@apply tabular-nums;
 }
+
+tr {
+	overflow-anchor: none;
+}

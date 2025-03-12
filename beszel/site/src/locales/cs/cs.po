@@ -48,14 +48,14 @@ msgid "30 days"
 msgstr "30 dní"
 
 #. Table column
-#: src/components/systems-table/systems-table.tsx:293
-#: src/components/systems-table/systems-table.tsx:381
-#: src/components/systems-table/systems-table.tsx:523
-#: src/components/systems-table/systems-table.tsx:533
+#: src/components/systems-table/systems-table.tsx:294
+#: src/components/systems-table/systems-table.tsx:385
+#: src/components/systems-table/systems-table.tsx:550
+#: src/components/systems-table/systems-table.tsx:560
 msgid "Actions"
 msgstr "Akce"
 
-#: src/components/routes/home.tsx:62
+#: src/components/routes/home.tsx:91
 msgid "Active Alerts"
 msgstr "Aktivní výstrahy"
 
@@ -87,21 +87,21 @@ msgstr "Upravit možnosti zobrazení pro grafy."
 msgid "Admin"
 msgstr "Admin"
 
-#: src/components/systems-table/systems-table.tsx:261
+#: src/components/systems-table/systems-table.tsx:265
 msgid "Agent"
 msgstr "Agent"
 
 #: src/components/alerts/alert-button.tsx:32
-#: src/components/alerts/alert-button.tsx:68
+#: src/components/alerts/alert-button.tsx:78
 msgid "Alerts"
 msgstr "Výstrahy"
 
-#: src/components/systems-table/systems-table.tsx:334
-#: src/components/alerts/alert-button.tsx:88
+#: src/components/systems-table/systems-table.tsx:338
+#: src/components/alerts/alert-button.tsx:98
 msgid "All Systems"
 msgstr "Všechny systémy"
 
-#: src/components/systems-table/systems-table.tsx:657
+#: src/components/systems-table/systems-table.tsx:724
 msgid "Are you sure you want to delete {name}?"
 msgstr "Opravdu chcete odstranit {name}?"
 
@@ -118,7 +118,7 @@ msgid "Average CPU utilization of containers"
 msgstr "Průměrné využití CPU kontejnerů"
 
 #. placeholder {0}: data.alert.unit
-#: src/components/alerts/alerts-system.tsx:205
+#: src/components/alerts/alerts-system.tsx:252
 msgid "Average exceeds <0>{value}{0}</0>"
 msgstr "Průměr je vyšší než <0>{value}{0}</0>"
 
@@ -161,7 +161,7 @@ msgstr "Binary"
 msgid "Cache / Buffers"
 msgstr "Cache / vyrovnávací paměť"
 
-#: src/components/systems-table/systems-table.tsx:668
+#: src/components/systems-table/systems-table.tsx:735
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -207,7 +207,7 @@ msgstr "Konfigurace způsobu přijímání upozornění."
 msgid "Confirm password"
 msgstr "Potvrdit heslo"
 
-#: src/components/systems-table/systems-table.tsx:674
+#: src/components/systems-table/systems-table.tsx:741
 msgid "Continue"
 msgstr "Pokračovat"
 
@@ -220,7 +220,7 @@ msgstr "Zkopírováno do schránky"
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: src/components/systems-table/systems-table.tsx:639
+#: src/components/systems-table/systems-table.tsx:706
 msgid "Copy host"
 msgstr "Kopírovat hostitele"
 
@@ -232,7 +232,7 @@ msgstr "Kopírovat příkaz Linux"
 msgid "Copy text"
 msgstr "Kopírovat text"
 
-#: src/components/systems-table/systems-table.tsx:180
+#: src/components/systems-table/systems-table.tsx:184
 msgid "CPU"
 msgstr "Procesor"
 
@@ -260,11 +260,11 @@ msgstr "Přehled"
 msgid "Default time period"
 msgstr "Výchozí doba"
 
-#: src/components/systems-table/systems-table.tsx:644
+#: src/components/systems-table/systems-table.tsx:711
 msgid "Delete"
 msgstr "Odstranit"
 
-#: src/components/systems-table/systems-table.tsx:196
+#: src/components/systems-table/systems-table.tsx:200
 msgid "Disk"
 msgstr "Disk"
 
@@ -300,13 +300,13 @@ msgstr "Dokumentace"
 
 #. Context: System is down
 #: src/lib/utils.ts:316
-#: src/components/systems-table/systems-table.tsx:141
+#: src/components/systems-table/systems-table.tsx:142
 #: src/components/routes/system.tsx:344
 msgid "Down"
 msgstr ""
 
 #: src/components/add-system.tsx:125
-#: src/components/systems-table/systems-table.tsx:614
+#: src/components/systems-table/systems-table.tsx:681
 msgid "Edit"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr "Chyba"
 #. placeholder {0}: alert.value
 #. placeholder {1}: info.unit
 #. placeholder {2}: alert.min
-#: src/components/routes/home.tsx:81
+#: src/components/routes/home.tsx:110
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Překračuje {0}{1} za {2, plural, one {poslední # minutu} few {poslední # minuty} other {posledních # minut}}"
 
@@ -365,16 +365,16 @@ msgstr "Nepodařilo se uložit nastavení"
 msgid "Failed to send test notification"
 msgstr "Nepodařilo se odeslat testovací oznámení"
 
-#: src/components/alerts/alerts-system.tsx:24
+#: src/components/alerts/alerts-system.tsx:25
 msgid "Failed to update alert"
 msgstr "Nepodařilo se aktualizovat upozornění"
 
-#: src/components/systems-table/systems-table.tsx:341
+#: src/components/systems-table/systems-table.tsx:345
 #: src/components/routes/system.tsx:641
 msgid "Filter..."
 msgstr "Filtr..."
 
-#: src/components/alerts/alerts-system.tsx:230
+#: src/components/alerts/alerts-system.tsx:284
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
 msgstr "Za <0>{min}</0> {min, plural, one {minutu} few {minuty} other {minut}}"
 
@@ -392,7 +392,7 @@ msgstr "Obecné"
 msgid "GPU Power Draw"
 msgstr "Spotřeba energie GPU"
 
-#: src/components/systems-table/systems-table.tsx:368
+#: src/components/systems-table/systems-table.tsx:372
 msgid "Grid"
 msgstr "Mřížka"
 
@@ -417,7 +417,7 @@ msgstr "Kernel"
 msgid "Language"
 msgstr "Jazyk"
 
-#: src/components/systems-table/systems-table.tsx:354
+#: src/components/systems-table/systems-table.tsx:358
 msgid "Layout"
 msgstr "Rozvržení"
 
@@ -461,7 +461,7 @@ msgstr ""
 msgid "Max 1 min"
 msgstr "Max. 1 min"
 
-#: src/components/systems-table/systems-table.tsx:188
+#: src/components/systems-table/systems-table.tsx:192
 msgid "Memory"
 msgstr "Paměť"
 
@@ -478,7 +478,7 @@ msgstr "Využití paměti docker kontejnerů"
 msgid "Name"
 msgstr "Název"
 
-#: src/components/systems-table/systems-table.tsx:213
+#: src/components/systems-table/systems-table.tsx:217
 msgid "Net"
 msgstr "Síť"
 
@@ -494,8 +494,8 @@ msgstr "Síťový provoz veřejných rozhraní"
 msgid "No results found."
 msgstr "Nenalezeny žádné výskyty."
 
-#: src/components/systems-table/systems-table.tsx:489
-#: src/components/systems-table/systems-table.tsx:562
+#: src/components/systems-table/systems-table.tsx:462
+#: src/components/systems-table/systems-table.tsx:499
 msgid "No systems found."
 msgstr "Nenalezeny žádné systémy."
 
@@ -513,7 +513,7 @@ msgstr "Podpora OAuth 2 / OIDC"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Při každém restartu budou systémy v databázi aktualizovány tak, aby odpovídaly systémům definovaným v souboru."
 
-#: src/components/systems-table/systems-table.tsx:600
+#: src/components/systems-table/systems-table.tsx:667
 msgid "Open menu"
 msgstr "Otevřít menu"
 
@@ -521,7 +521,7 @@ msgstr "Otevřít menu"
 msgid "Or continue with"
 msgstr "Nebo pokračujte s"
 
-#: src/components/alerts/alert-button.tsx:109
+#: src/components/alerts/alert-button.tsx:119
 msgid "Overwrite existing alerts"
 msgstr "Přepsat existující upozornění"
 
@@ -550,11 +550,11 @@ msgstr ""
 msgid "Password reset request received"
 msgstr "Žádost o obnovu hesla byla přijata"
 
-#: src/components/systems-table/systems-table.tsx:633
+#: src/components/systems-table/systems-table.tsx:700
 msgid "Pause"
 msgstr "Pozastavit"
 
-#: src/components/systems-table/systems-table.tsx:142
+#: src/components/systems-table/systems-table.tsx:143
 msgid "Paused"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "<0>nakonfigurujte SMTP server</0> pro zajištění toho, aby byla upozornění doručena."
 
-#: src/components/alerts/alerts-system.tsx:25
+#: src/components/alerts/alerts-system.tsx:26
 msgid "Please check logs for more details."
 msgstr "Pro více informací zkontrolujte logy."
 
@@ -624,7 +624,7 @@ msgstr "Přijato"
 msgid "Reset Password"
 msgstr "Obnovit heslo"
 
-#: src/components/systems-table/systems-table.tsx:628
+#: src/components/systems-table/systems-table.tsx:695
 msgid "Resume"
 msgstr "Pokračovat"
 
@@ -649,7 +649,7 @@ msgstr "Hledat"
 msgid "Search for systems or settings..."
 msgstr "Hledat systémy nebo nastavení..."
 
-#: src/components/alerts/alert-button.tsx:71
+#: src/components/alerts/alert-button.tsx:81
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Podívejte se na <0>nastavení upozornění</0> pro nastavení toho, jak přijímáte upozornění."
 
@@ -682,7 +682,7 @@ msgstr "Přihlásit se"
 msgid "SMTP settings"
 msgstr "Nastavení SMTP"
 
-#: src/components/systems-table/systems-table.tsx:376
+#: src/components/systems-table/systems-table.tsx:380
 msgid "Sort By"
 msgstr "Seřadit podle"
 
@@ -701,10 +701,10 @@ msgstr "Swap využití"
 #. System theme
 #: src/lib/utils.ts:316
 #: src/components/mode-toggle.tsx:26
-#: src/components/systems-table/systems-table.tsx:125
-#: src/components/systems-table/systems-table.tsx:133
-#: src/components/systems-table/systems-table.tsx:150
-#: src/components/systems-table/systems-table.tsx:533
+#: src/components/systems-table/systems-table.tsx:126
+#: src/components/systems-table/systems-table.tsx:134
+#: src/components/systems-table/systems-table.tsx:151
+#: src/components/systems-table/systems-table.tsx:560
 msgid "System"
 msgstr "Systém"
 
@@ -716,12 +716,12 @@ msgstr "Systémy"
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "Systémy lze spravovat v souboru <0>config.yml</0> uvnitř datového adresáře."
 
-#: src/components/systems-table/systems-table.tsx:364
+#: src/components/systems-table/systems-table.tsx:368
 msgid "Table"
 msgstr "Tabulka"
 
 #. Temperature label in systems table
-#: src/components/systems-table/systems-table.tsx:233
+#: src/components/systems-table/systems-table.tsx:237
 msgid "Temp"
 msgstr ""
 
@@ -754,7 +754,7 @@ msgstr "Agent musí být v systému spuštěn, aby se mohl připojit. Zkopírujt
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Poté se přihlaste do backendu a obnovte heslo k uživatelskému účtu v tabulce uživatelů."
 
-#: src/components/systems-table/systems-table.tsx:660
+#: src/components/systems-table/systems-table.tsx:727
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Tuto akci nelze vzít zpět. Tím se z databáze trvale odstraní všechny aktuální záznamy pro {name}."
 
@@ -804,12 +804,12 @@ msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Spustí se, když využití disku překročí prahovou hodnotu"
 
 #. Context: System is up
-#: src/components/systems-table/systems-table.tsx:140
+#: src/components/systems-table/systems-table.tsx:141
 #: src/components/routes/system.tsx:342
 msgid "Up"
 msgstr ""
 
-#: src/components/systems-table/systems-table.tsx:337
+#: src/components/systems-table/systems-table.tsx:341
 msgid "Updated in real time. Click on a system to view information."
 msgstr "Aktualizováno v reálném čase. Klepnutím na systém zobrazíte informace."
 
@@ -838,11 +838,11 @@ msgstr "Využito"
 msgid "Users"
 msgstr "Uživatelé"
 
-#: src/components/systems-table/systems-table.tsx:346
+#: src/components/systems-table/systems-table.tsx:350
 msgid "View"
 msgstr "Zobrazení"
 
-#: src/components/systems-table/systems-table.tsx:410
+#: src/components/systems-table/systems-table.tsx:414
 msgid "Visible Fields"
 msgstr "Viditelné sloupce"
 

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@henrygd/semaphore": "^0.0.2"
+  }
+}

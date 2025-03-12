@@ -23,20 +23,14 @@ func (a *Agent) StartServer(opts ServerOptions) error {
 
 	slog.Info("Starting SSH server", "addr", opts.Addr, "network", opts.Network)
 
-	switch opts.Network {
-	case "unix":
+	if opts.Network == "unix" {
 		// remove existing socket file if it exists
 		if err := os.Remove(opts.Addr); err != nil && !os.IsNotExist(err) {
 			return err
 		}
-	default:
-		// prefix with : if only port was provided
-		if !strings.Contains(opts.Addr, ":") {
-			opts.Addr = ":" + opts.Addr
-		}
 	}
 
-	// Listen on the address
+	// start listening on the address
 	ln, err := net.Listen(opts.Network, opts.Addr)
 	if err != nil {
 		return err
@@ -88,4 +82,34 @@ func ParseKeys(input string) ([]ssh.PublicKey, error) {
 		parsedKeys = append(parsedKeys, parsedKey)
 	}
 	return parsedKeys, nil
+}
+
+// GetAddress gets the address to listen on or connect to from environment variables or default value.
+func GetAddress(addr string) string {
+	if addr == "" {
+		addr, _ = GetEnv("LISTEN")
+	}
+	if addr == "" {
+		// Legacy PORT environment variable support
+		addr, _ = GetEnv("PORT")
+	}
+	if addr == "" {
+		return ":45876"
+	}
+	// prefix with : if only port was provided
+	if GetNetwork(addr) != "unix" && !strings.Contains(addr, ":") {
+		addr = ":" + addr
+	}
+	return addr
+}
+
+// GetNetwork returns the network type to use based on the address
+func GetNetwork(addr string) string {
+	if network, ok := GetEnv("NETWORK"); ok && network != "" {
+		return network
+	}
+	if strings.HasPrefix(addr, "/") {
+		return "unix"
+	}
+	return "tcp"
 }

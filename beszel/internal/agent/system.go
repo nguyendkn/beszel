@@ -49,9 +49,7 @@ func (a *Agent) initializeSystemInfo() {
 }
 
 // Returns current info, stats about the host system
-func (a *Agent) getSystemStats() system.Stats {
-	systemStats := system.Stats{}
-
+func (a *Agent) getSystemStats(systemStats *system.Stats) *system.Stats {
 	// cpu percent
 	cpuPct, err := cpu.Percent(0, false)
 	if err != nil {
@@ -185,7 +183,7 @@ func (a *Agent) getSystemStats() system.Stats {
 	}
 
 	// temperatures (skip if sensors whitelist is set to empty string)
-	err = a.updateTemperatures(&systemStats)
+	err = a.updateTemperatures(systemStats)
 	if err != nil {
 		slog.Error("Error getting temperatures", "err", fmt.Sprintf("%+v", err))
 	}

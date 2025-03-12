@@ -15,6 +15,7 @@ if (import.meta.env.DEV) {
 
 // activates locale
 function activateLocale(locale: string, messages: Messages = enMessages) {
+	console.log("activating locale", locale)
 	i18n.load(locale, messages)
 	i18n.activate(locale)
 	document.documentElement.lang = locale

@@ -48,14 +48,14 @@ msgid "30 days"
 msgstr "30 nap"
 
 #. Table column
-#: src/components/systems-table/systems-table.tsx:293
-#: src/components/systems-table/systems-table.tsx:381
-#: src/components/systems-table/systems-table.tsx:523
-#: src/components/systems-table/systems-table.tsx:533
+#: src/components/systems-table/systems-table.tsx:294
+#: src/components/systems-table/systems-table.tsx:385
+#: src/components/systems-table/systems-table.tsx:550
+#: src/components/systems-table/systems-table.tsx:560
 msgid "Actions"
 msgstr "Műveletek"
 
-#: src/components/routes/home.tsx:62
+#: src/components/routes/home.tsx:91
 msgid "Active Alerts"
 msgstr "Aktív riasztások"
 
@@ -87,21 +87,21 @@ msgstr "Állítsa be a diagram megjelenítését."
 msgid "Admin"
 msgstr "Admin"
 
-#: src/components/systems-table/systems-table.tsx:261
+#: src/components/systems-table/systems-table.tsx:265
 msgid "Agent"
 msgstr "Ügynök"
 
 #: src/components/alerts/alert-button.tsx:32
-#: src/components/alerts/alert-button.tsx:68
+#: src/components/alerts/alert-button.tsx:78
 msgid "Alerts"
 msgstr "Riasztások"
 
-#: src/components/systems-table/systems-table.tsx:334
-#: src/components/alerts/alert-button.tsx:88
+#: src/components/systems-table/systems-table.tsx:338
+#: src/components/alerts/alert-button.tsx:98
 msgid "All Systems"
 msgstr "Minden rendszer"
 
-#: src/components/systems-table/systems-table.tsx:657
+#: src/components/systems-table/systems-table.tsx:724
 msgid "Are you sure you want to delete {name}?"
 msgstr "Biztosan törölni szeretnéd {name}-t?"
 
@@ -118,7 +118,7 @@ msgid "Average CPU utilization of containers"
 msgstr "Konténerek átlagos CPU kihasználtsága"
 
 #. placeholder {0}: data.alert.unit
-#: src/components/alerts/alerts-system.tsx:205
+#: src/components/alerts/alerts-system.tsx:252
 msgid "Average exceeds <0>{value}{0}</0>"
 msgstr "Az átlag meghaladja a <0>{value}{0}</0> értéket"
 
@@ -161,7 +161,7 @@ msgstr "Bináris"
 msgid "Cache / Buffers"
 msgstr "Gyorsítótár / Pufferelések"
 
-#: src/components/systems-table/systems-table.tsx:668
+#: src/components/systems-table/systems-table.tsx:735
 msgid "Cancel"
 msgstr "Mégsem"
 
@@ -207,7 +207,7 @@ msgstr "Konfiguráld, hogyan kapod az értesítéseket."
 msgid "Confirm password"
 msgstr "Jelszó megerősítése"
 
-#: src/components/systems-table/systems-table.tsx:674
+#: src/components/systems-table/systems-table.tsx:741
 msgid "Continue"
 msgstr "Tovább"
 
@@ -220,7 +220,7 @@ msgstr "Vágólapra másolva"
 msgid "Copy"
 msgstr "Másolás"
 
-#: src/components/systems-table/systems-table.tsx:639
+#: src/components/systems-table/systems-table.tsx:706
 msgid "Copy host"
 msgstr "Hoszt másolása"
 
@@ -232,7 +232,7 @@ msgstr "Linux parancs másolása"
 msgid "Copy text"
 msgstr "Szöveg másolása"
 
-#: src/components/systems-table/systems-table.tsx:180
+#: src/components/systems-table/systems-table.tsx:184
 msgid "CPU"
 msgstr "CPU"
 
@@ -260,11 +260,11 @@ msgstr "Áttekintés"
 msgid "Default time period"
 msgstr "Alapértelmezett időszak"
 
-#: src/components/systems-table/systems-table.tsx:644
+#: src/components/systems-table/systems-table.tsx:711
 msgid "Delete"
 msgstr "Törlés"
 
-#: src/components/systems-table/systems-table.tsx:196
+#: src/components/systems-table/systems-table.tsx:200
 msgid "Disk"
 msgstr "Lemez"
 
@@ -300,13 +300,13 @@ msgstr "Dokumentáció"
 
 #. Context: System is down
 #: src/lib/utils.ts:316
-#: src/components/systems-table/systems-table.tsx:141
+#: src/components/systems-table/systems-table.tsx:142
 #: src/components/routes/system.tsx:344
 msgid "Down"
 msgstr ""
 
 #: src/components/add-system.tsx:125
-#: src/components/systems-table/systems-table.tsx:614
+#: src/components/systems-table/systems-table.tsx:681
 msgid "Edit"
 msgstr ""
 
@@ -336,7 +336,7 @@ msgstr "Hiba"
 #. placeholder {0}: alert.value
 #. placeholder {1}: info.unit
 #. placeholder {2}: alert.min
-#: src/components/routes/home.tsx:81
+#: src/components/routes/home.tsx:110
 msgid "Exceeds {0}{1} in last {2, plural, one {# minute} other {# minutes}}"
 msgstr "Túllépi a {0}{1} értéket az elmúlt {2, plural, one {# percben} other {# percben}}"
 
@@ -365,16 +365,16 @@ msgstr "Nem sikerült menteni a beállításokat"
 msgid "Failed to send test notification"
 msgstr "Teszt értesítés elküldése sikertelen"
 
-#: src/components/alerts/alerts-system.tsx:24
+#: src/components/alerts/alerts-system.tsx:25
 msgid "Failed to update alert"
 msgstr "Nem sikerült frissíteni a riasztást"
 
-#: src/components/systems-table/systems-table.tsx:341
+#: src/components/systems-table/systems-table.tsx:345
 #: src/components/routes/system.tsx:641
 msgid "Filter..."
 msgstr "Szűrő..."
 
-#: src/components/alerts/alerts-system.tsx:230
+#: src/components/alerts/alerts-system.tsx:284
 msgid "For <0>{min}</0> {min, plural, one {minute} other {minutes}}"
 msgstr "A <0>{min}</0> {min, plural, one {perc} other {percek}}"
 
@@ -392,7 +392,7 @@ msgstr "Általános"
 msgid "GPU Power Draw"
 msgstr "GPU áramfelvétele"
 
-#: src/components/systems-table/systems-table.tsx:368
+#: src/components/systems-table/systems-table.tsx:372
 msgid "Grid"
 msgstr "Rács"
 
@@ -417,7 +417,7 @@ msgstr "Kernel"
 msgid "Language"
 msgstr "Nyelv"
 
-#: src/components/systems-table/systems-table.tsx:354
+#: src/components/systems-table/systems-table.tsx:358
 msgid "Layout"
 msgstr "Elrendezés"
 
@@ -461,7 +461,7 @@ msgstr ""
 msgid "Max 1 min"
 msgstr "Maximum 1 perc"
 
-#: src/components/systems-table/systems-table.tsx:188
+#: src/components/systems-table/systems-table.tsx:192
 msgid "Memory"
 msgstr "RAM"
 
@@ -478,7 +478,7 @@ msgstr "Docker konténerek memória használata"
 msgid "Name"
 msgstr "Név"
 
-#: src/components/systems-table/systems-table.tsx:213
+#: src/components/systems-table/systems-table.tsx:217
 msgid "Net"
 msgstr "Hálózat"
 
@@ -494,8 +494,8 @@ msgstr "Nyilvános interfészek hálózati forgalma"
 msgid "No results found."
 msgstr "Nincs találat."
 
-#: src/components/systems-table/systems-table.tsx:489
-#: src/components/systems-table/systems-table.tsx:562
+#: src/components/systems-table/systems-table.tsx:462
+#: src/components/systems-table/systems-table.tsx:499
 msgid "No systems found."
 msgstr "Nem található rendszer."
 
@@ -513,7 +513,7 @@ msgstr "OAuth 2 / OIDC támogatás"
 msgid "On each restart, systems in the database will be updated to match the systems defined in the file."
 msgstr "Minden újraindításkor az adatbázisban lévő rendszerek frissítésre kerülnek, hogy megfeleljenek a fájlban meghatározott rendszereknek."
 
-#: src/components/systems-table/systems-table.tsx:600
+#: src/components/systems-table/systems-table.tsx:667
 msgid "Open menu"
 msgstr "Menü megnyitása"
 
@@ -521,7 +521,7 @@ msgstr "Menü megnyitása"
 msgid "Or continue with"
 msgstr "Vagy folytasd ezzel"
 
-#: src/components/alerts/alert-button.tsx:109
+#: src/components/alerts/alert-button.tsx:119
 msgid "Overwrite existing alerts"
 msgstr "Felülírja a meglévő riasztásokat"
 
@@ -550,11 +550,11 @@ msgstr ""
 msgid "Password reset request received"
 msgstr "Jelszó-visszaállítási kérelmet kaptunk"
 
-#: src/components/systems-table/systems-table.tsx:633
+#: src/components/systems-table/systems-table.tsx:700
 msgid "Pause"
 msgstr "Szüneteltetés"
 
-#: src/components/systems-table/systems-table.tsx:142
+#: src/components/systems-table/systems-table.tsx:143
 msgid "Paused"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Please <0>configure an SMTP server</0> to ensure alerts are delivered."
 msgstr "Kérjük, <0>konfigurálj egy SMTP szervert</0> az értesítések kézbesítésének biztosítása érdekében."
 
-#: src/components/alerts/alerts-system.tsx:25
+#: src/components/alerts/alerts-system.tsx:26
 msgid "Please check logs for more details."
 msgstr "Kérjük, ellenőrizd a naplókat a további részletekért."
 
@@ -624,7 +624,7 @@ msgstr "Fogadott"
 msgid "Reset Password"
 msgstr "Jelszó visszaállítása"
 
-#: src/components/systems-table/systems-table.tsx:628
+#: src/components/systems-table/systems-table.tsx:695
 msgid "Resume"
 msgstr "Folytatás"
 
@@ -649,7 +649,7 @@ msgstr "Keresés"
 msgid "Search for systems or settings..."
 msgstr "Keresés rendszerek vagy beállítások után..."
 
-#: src/components/alerts/alert-button.tsx:71
+#: src/components/alerts/alert-button.tsx:81
 msgid "See <0>notification settings</0> to configure how you receive alerts."
 msgstr "Lásd <0>az értesítési beállításokat</0>, hogy konfigurálja, hogyan kap értesítéseket."
 
@@ -682,7 +682,7 @@ msgstr "Bejelentkezés"
 msgid "SMTP settings"
 msgstr "SMTP beállítások"
 
-#: src/components/systems-table/systems-table.tsx:376
+#: src/components/systems-table/systems-table.tsx:380
 msgid "Sort By"
 msgstr "Rendezés"
 
@@ -701,10 +701,10 @@ msgstr "Swap használat"
 #. System theme
 #: src/lib/utils.ts:316
 #: src/components/mode-toggle.tsx:26
-#: src/components/systems-table/systems-table.tsx:125
-#: src/components/systems-table/systems-table.tsx:133
-#: src/components/systems-table/systems-table.tsx:150
-#: src/components/systems-table/systems-table.tsx:533
+#: src/components/systems-table/systems-table.tsx:126
+#: src/components/systems-table/systems-table.tsx:134
+#: src/components/systems-table/systems-table.tsx:151
+#: src/components/systems-table/systems-table.tsx:560
 msgid "System"
 msgstr "Rendszer"
 
@@ -716,12 +716,12 @@ msgstr "Rendszer"
 msgid "Systems may be managed in a <0>config.yml</0> file inside your data directory."
 msgstr "A rendszereket egy <0>config.yml</0> fájlban lehet kezelni az adatkönyvtárban."
 
-#: src/components/systems-table/systems-table.tsx:364
+#: src/components/systems-table/systems-table.tsx:368
 msgid "Table"
 msgstr "Tábla"
 
 #. Temperature label in systems table
-#: src/components/systems-table/systems-table.tsx:233
+#: src/components/systems-table/systems-table.tsx:237
 msgid "Temp"
 msgstr ""
 
@@ -754,7 +754,7 @@ msgstr "A csatlakozáshoz az ügynöknek futnia kell a rendszerben. Másolja az<
 msgid "Then log into the backend and reset your user account password in the users table."
 msgstr "Ezután jelentkezzen be a backendbe, és állítsa vissza a felhasználói fiók jelszavát a felhasználók táblázatban."
 
-#: src/components/systems-table/systems-table.tsx:660
+#: src/components/systems-table/systems-table.tsx:727
 msgid "This action cannot be undone. This will permanently delete all current records for {name} from the database."
 msgstr "Ezt a műveletet nem lehet visszavonni! Véglegesen törli a {name} összes jelenlegi rekordját az adatbázisból!"
 
@@ -804,12 +804,12 @@ msgid "Triggers when usage of any disk exceeds a threshold"
 msgstr "Bekapcsol, ha a lemez érzékelő túllép egy küszöbértéket"
 
 #. Context: System is up
-#: src/components/systems-table/systems-table.tsx:140
+#: src/components/systems-table/systems-table.tsx:141
 #: src/components/routes/system.tsx:342
 msgid "Up"
 msgstr ""
 
-#: src/components/systems-table/systems-table.tsx:337
+#: src/components/systems-table/systems-table.tsx:341
 msgid "Updated in real time. Click on a system to view information."
 msgstr "Valós időben frissítve. Kattintson egy rendszerre az információk megtekintéséhez."
 
@@ -838,11 +838,11 @@ msgstr "Felhasznált"
 msgid "Users"
 msgstr "Felhasználók"
 
-#: src/components/systems-table/systems-table.tsx:346
+#: src/components/systems-table/systems-table.tsx:350
 msgid "View"
 msgstr "Nézet"
 
-#: src/components/systems-table/systems-table.tsx:410
+#: src/components/systems-table/systems-table.tsx:414
 msgid "Visible Fields"
 msgstr "Látható mezők"
 

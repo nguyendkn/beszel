@@ -83,7 +83,7 @@ type Info struct {
 
 // Final data structure to return to the hub
 type CombinedData struct {
-	Stats      Stats              `json:"stats"`
-	Info       Info               `json:"info"`
+	Stats      *Stats             `json:"stats"`
+	Info       *Info              `json:"info"`
 	Containers []*container.Stats `json:"container"`
 }
