@@ -277,6 +277,7 @@ echo "Downloading and installing the agent..."
 OS=$(uname -s | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/armv6l/arm/' -e 's/armv7l/arm/' -e 's/aarch64/arm64/')
 FILE_NAME="cmonitor-agent_${OS}_${ARCH}.tar.gz"
+echo "FILE_NAME: $OS, ARCH: $ARCH"
 LATEST_VERSION=$(curl -s "https://api.github.com/repos/nguyendkn/cmonitor/releases/latest" | grep -o '"tag_name": *"v[^"]*"' | cut -d'"' -f4)
 if [ -z "$LATEST_VERSION" ]; then
   echo "Failed to get latest version"
