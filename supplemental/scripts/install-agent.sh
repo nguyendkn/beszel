@@ -288,7 +288,7 @@ TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR" || exit 1
 CHECKSUM=$(curl -sL "$GITHUB_URL/nguyendkn/cmonitor/releases/download/v${LATEST_VERSION}/cmonitor_${LATEST_VERSION}_checksums.txt" | grep "$FILE_NAME" | cut -d' ' -f1)
 if [ -z "$CHECKSUM" ] || ! echo "$CHECKSUM" | grep -qE "^[a-fA-F0-9]{64}$"; then
-  echo "Failed to get checksum or invalid checksum format"
+  echo "Failed to get checksum or invalid checksum format $CHECKSUM"
   exit 1
 fi
 if ! curl -#L "$GITHUB_URL/nguyendkn/cmonitor/releases/download/v${LATEST_VERSION}/$FILE_NAME" -o "$FILE_NAME"; then
