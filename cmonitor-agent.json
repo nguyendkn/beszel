@@ -1,19 +1,19 @@
 {
-    "version": "0.11.1-dev.18",
+    "version": "0.11.2",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/nguyendkn/cmonitor/releases/download/v0.11.1-dev.18/cmonitor-agent_windows_amd64.zip",
+            "url": "https://github.com/nguyendkn/cmonitor/releases/download/v0.11.2/cmonitor-agent_windows_amd64.zip",
             "bin": [
                 "cmonitor-agent.exe"
             ],
-            "hash": "6cffd50713777f20d43bd058526a3c5bfe090c44acc576c769c72e05ab514ea8"
+            "hash": "063481abfcc9484c74cb81f82a082f184f6e1e8525ff189682893c1d91d59770"
         },
         "arm64": {
-            "url": "https://github.com/nguyendkn/cmonitor/releases/download/v0.11.1-dev.18/cmonitor-agent_windows_arm64.zip",
+            "url": "https://github.com/nguyendkn/cmonitor/releases/download/v0.11.2/cmonitor-agent_windows_arm64.zip",
             "bin": [
                 "cmonitor-agent.exe"
             ],
-            "hash": "9fe16ffdcdb45f9bbe69202274f07d52d5e2d518eddc38a84dafc8efda44f50f"
+            "hash": "e6b925128151ecca2fa80f874114407c86d48eed8bd60908f0296daf4c16ab99"
         }
     },
     "homepage": "https://cmonitor.dev",
