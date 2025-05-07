@@ -277,7 +277,7 @@ echo "Downloading and installing the agent..."
 OS=$(uname -s | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/')
 ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/armv6l/arm/' -e 's/armv7l/arm/' -e 's/aarch64/arm64/')
 FILE_NAME="cmonitor-agent_${OS}_${ARCH}.tar.gz"
-LATEST_VERSION=$(curl -s "$GITHUB_API_URL/repos/nguyendkn/cmonitor/releases/latest" | grep -o '"tag_name": "v[^"]*"' | cut -d'"' -f4 | tr -d 'v')
+LATEST_VERSION=$(curl -s "https://api.github.com/repos/nguyendkn/cmonitor/releases/latest" | grep -o '"tag_name": *"v[^"]*"' | cut -d'"' -f4)
 if [ -z "$LATEST_VERSION" ]; then
   echo "Failed to get latest version"
   exit 1
@@ -285,7 +285,7 @@ fi
 echo "Downloading and installing agent version ${LATEST_VERSION} from ${GITHUB_URL} ..."
 TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR" || exit 1
-CHECKSUM=$(curl -sL "$GITHUB_URL/nguyendkn/cmonitor/releases/download/v${LATEST_VERSION}/beszel_${LATEST_VERSION}_checksums.txt" | grep "$FILE_NAME" | cut -d' ' -f1)
+CHECKSUM=$(curl -sL "$GITHUB_URL/nguyendkn/cmonitor/releases/download/v${LATEST_VERSION}/cmonitor_${LATEST_VERSION}_checksums.txt" | grep "$FILE_NAME" | cut -d' ' -f1)
 if [ -z "$CHECKSUM" ] || ! echo "$CHECKSUM" | grep -qE "^[a-fA-F0-9]{64}$"; then
   echo "Failed to get checksum or invalid checksum format"
   exit 1
